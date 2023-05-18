@@ -1,4 +1,5 @@
 import { Schema } from 'mongoose';
+
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import AbstractODM from './AbstractODM';
 

@@ -2,14 +2,14 @@ import { Model, model, models, Schema,
   UpdateQuery, isValidObjectId } from 'mongoose';
 
 abstract class AbstractODM<T> {
-  private schema: Schema;
+  private _schema: Schema;
   protected model: Model<T>;
   protected modelName: string;
 
   constructor(schema: Schema, modelName: string) {
-    this.schema = schema;
+    this._schema = schema;
     this.modelName = modelName;
-    this.model = models[this.modelName] || model(modelName, this.schema);
+    this.model = models[this.modelName] || model(modelName, this._schema);
   }
 
   public async create(obj: T): Promise<T> {
