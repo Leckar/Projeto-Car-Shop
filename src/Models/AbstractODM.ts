@@ -2,14 +2,14 @@ import { Model, model, models, Schema,
   UpdateQuery, isValidObjectId } from 'mongoose';
 
 abstract class AbstractODM<T> {
-  private _schema: Schema;
+  private schema: Schema;
   protected model: Model<T>;
   protected modelName: string;
 
   constructor(schema: Schema, modelName: string) {
-    this._schema = schema;
+    this.schema = schema;
     this.modelName = modelName;
-    this.model = models[this.modelName] || model(modelName, this._schema);
+    this.model = models[this.modelName] || model(modelName, this.schema);
   }
 
   public async create(obj: T): Promise<T> {
@@ -31,6 +31,7 @@ abstract class AbstractODM<T> {
   }
 
   public async getById(id: string): Promise<T | null> {
+    if (!isValidObjectId(id)) throw Error('Invalid mongo id');
     return this.model.findById(id);
   }
 }

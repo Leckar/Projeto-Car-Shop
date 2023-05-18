@@ -2,14 +2,14 @@ import ICar from '../Interfaces/ICar';
 import Vehicle from './Vehicle';
 
 class Car extends Vehicle {
-  private _doorsQty: number;
-  private _seatsQty: number;
+  private doorsQty: number;
+  private seatsQty: number;
 
   constructor(vehicle: ICar) {
     super(vehicle);
     const { doorsQty, seatsQty } = vehicle;
-    this._doorsQty = doorsQty;
-    this._seatsQty = seatsQty;
+    this.doorsQty = doorsQty;
+    this.seatsQty = seatsQty;
   }
 }
 
